@@ -1,41 +1,4 @@
-## Copyright (c) 2021 Oracle and/or its affiliates.
-## All rights reserved. The Universal Permissive License (UPL), Version 1.0 as shown at http://oss.oracle.com/licenses/upl
-
 # Variables
-variable "tenancy_ocid" {}
-variable "compartment_ocid" {
-  default = ""
-}
-variable "user_ocid" {
-  default = ""
-}
-variable "fingerprint" {
-  default = ""
-}
-variable "private_key_path" {
-  default = ""
-}
-variable "region" {}
-variable "ATP_password" {}
-variable "availability_domain_number" {
-  default = 0
-}
-variable "availability_domain_name" {
-  default = ""
-}
-
-variable "release" {
-  description = "Reference Architecture Release (OCI Architecture Center)"
-  default     = "1.3.1"
-}
-
-variable "ssh_public_key" {
-  default = ""
-}
-variable "ssh_public_key_path" {
-  default = ""
-}
-
 variable "lb_shape" {
   default = "flexible"
 }

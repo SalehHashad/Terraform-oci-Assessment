@@ -1,16 +1,9 @@
-## Copyright (c) 2021 Oracle and/or its affiliates.
-## All rights reserved. The Universal Permissive License (UPL), Version 1.0 as shown at http://oss.oracle.com/licenses/upl
 
 # ATPSecurityGroup
 resource "oci_core_network_security_group" "ATPSecurityGroup" {
   compartment_id = var.compartment_ocid
   display_name   = "ATPSecurityGroup"
   vcn_id         = oci_core_virtual_network.vcn.id
-  defined_tags   = { "${oci_identity_tag_namespace.ArchitectureCenterTagNamespace.name}.${oci_identity_tag.ArchitectureCenterTag.name}" = var.release }
-  lifecycle {
-    ignore_changes = [defined_tags["Oracle-Tags.CreatedBy"], defined_tags["Oracle-Tags.CreatedOn"]]
-  }
-}
 
 # Rules related to ATPSecurityGroup
 # EGRESS
@@ -41,11 +34,7 @@ resource "oci_core_network_security_group" "WebSecurityGroup" {
   compartment_id = var.compartment_ocid
   display_name   = "WebSecurityGroup"
   vcn_id         = oci_core_virtual_network.vcn.id
-  defined_tags   = { "${oci_identity_tag_namespace.ArchitectureCenterTagNamespace.name}.${oci_identity_tag.ArchitectureCenterTag.name}" = var.release }
-  lifecycle {
-    ignore_changes = [defined_tags["Oracle-Tags.CreatedBy"], defined_tags["Oracle-Tags.CreatedOn"]]
-  }
-}
+
 # Rules related to WebSecurityGroup
 # EGRESS
 resource "oci_core_network_security_group_security_rule" "WebSecurityEgressATPGroupRule" {
@@ -82,11 +71,7 @@ resource "oci_core_network_security_group" "LBSecurityGroup" {
   compartment_id = var.compartment_ocid
   display_name   = "LBSecurityGroup"
   vcn_id         = oci_core_virtual_network.vcn.id
-  defined_tags   = { "${oci_identity_tag_namespace.ArchitectureCenterTagNamespace.name}.${oci_identity_tag.ArchitectureCenterTag.name}" = var.release }
-  lifecycle {
-    ignore_changes = [defined_tags["Oracle-Tags.CreatedBy"], defined_tags["Oracle-Tags.CreatedOn"]]
-  }
-}
+  
 # Rules related to LBSecurityGroup
 # EGRESS
 resource "oci_core_network_security_group_security_rule" "LBSecurityEgressInternetGroupRule" {
@@ -116,11 +101,7 @@ resource "oci_core_network_security_group" "SSHSecurityGroup" {
   compartment_id = var.compartment_ocid
   display_name   = "SSHSecurityGroup"
   vcn_id         = oci_core_virtual_network.vcn.id
-  defined_tags   = { "${oci_identity_tag_namespace.ArchitectureCenterTagNamespace.name}.${oci_identity_tag.ArchitectureCenterTag.name}" = var.release }
-  lifecycle {
-    ignore_changes = [defined_tags["Oracle-Tags.CreatedBy"], defined_tags["Oracle-Tags.CreatedOn"]]
-  }
-}
+  
 # Rules related to SSHSecurityGroup
 # EGRESS
 resource "oci_core_network_security_group_security_rule" "SSHSecurityEgressGroupRule" {

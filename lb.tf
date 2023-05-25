@@ -1,5 +1,3 @@
-## Copyright (c) 2021 Oracle and/or its affiliates.
-## All rights reserved. The Universal Permissive License (UPL), Version 1.0 as shown at http://oss.oracle.com/licenses/upl
 
 locals {
   is_flexible_lb_shape = var.lb_shape == "flexible" ? true : false
@@ -7,9 +5,7 @@ locals {
 
 resource "oci_load_balancer" "lb1" {
   shape = var.lb_shape
-  lifecycle {
-    ignore_changes = [defined_tags["Oracle-Tags.CreatedBy"], defined_tags["Oracle-Tags.CreatedOn"]]
-  }
+  
 
   dynamic "shape_details" {
     for_each = local.is_flexible_lb_shape ? [1] : []
@@ -25,7 +21,6 @@ resource "oci_load_balancer" "lb1" {
     oci_core_subnet.subnet_1.id,
   ]
 
-  defined_tags = { "${oci_identity_tag_namespace.ArchitectureCenterTagNamespace.name}.${oci_identity_tag.ArchitectureCenterTag.name}" = var.release }
 
   display_name               = "load-balancer"
   network_security_group_ids = [oci_core_network_security_group.LBSecurityGroup.id]

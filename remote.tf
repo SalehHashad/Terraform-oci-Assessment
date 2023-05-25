@@ -1,5 +1,3 @@
-## Copyright (c) 2021 Oracle and/or its affiliates.
-## All rights reserved. The Universal Permissive License (UPL), Version 1.0 as shown at http://oss.oracle.com/licenses/upl
 
 resource "null_resource" "compute-script1" {
   depends_on = [oci_core_instance.compute_instance1, oci_database_autonomous_database.ATPdatabase, oci_core_network_security_group_security_rule.ATPSecurityEgressGroupRule, oci_core_network_security_group_security_rule.ATPSecurityIngressGroupRules]

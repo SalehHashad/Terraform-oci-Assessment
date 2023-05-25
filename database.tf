@@ -1,5 +1,3 @@
-## Copyright (c) 2021 Oracle and/or its affiliates.
-## All rights reserved. The Universal Permissive License (UPL), Version 1.0 as shown at http://oss.oracle.com/licenses/upl
 
 resource "oci_database_autonomous_database" "ATPdatabase" {
   admin_password           = var.ATP_password
@@ -15,10 +13,6 @@ resource "oci_database_autonomous_database" "ATPdatabase" {
   private_endpoint_label   = var.ATP_private_endpoint ? var.ATP_private_endpoint_label : null
   subnet_id                = var.ATP_private_endpoint ? oci_core_subnet.subnet_3.id : null
   is_data_guard_enabled    = var.ATP_data_guard_enabled
-  defined_tags             = { "${oci_identity_tag_namespace.ArchitectureCenterTagNamespace.name}.${oci_identity_tag.ArchitectureCenterTag.name}" = var.release }
-  lifecycle {
-    ignore_changes = [defined_tags["Oracle-Tags.CreatedBy"], defined_tags["Oracle-Tags.CreatedOn"]]
-  }
 }
 
 resource "random_string" "wallet_password" {

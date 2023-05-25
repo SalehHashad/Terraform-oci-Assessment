@@ -1,0 +1,19 @@
+terraform {
+  required_version = ">= 0.14"
+}
+
+provider oci {
+   region = var.region
+}
+
+variable tenancy_ocid {default = "the ocid of your tenancy"}
+variable region {default = "the region in which you want to query"}
+variable compartment_ocid { default = "the compartment in which you want to query"}
+
+data "oci_identity_tenancy" "tenant_details" {
+  tenancy_id = var.tenancy_ocid
+}
+
+output "query" {
+  value = data.oci_identity_tenancy.tenant_details  
+}
